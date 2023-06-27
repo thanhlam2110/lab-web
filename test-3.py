@@ -5,7 +5,8 @@ def write_json(path: str,json_str: str):
             outfile.write(json_str)
 # Retrieve the author's data, fill-in, and print
 # Get an iterator for the author results
-search_query = scholarly.search_author('Elena Ferrari')
+author_name = "Lam Tran Thanh Nguyen"
+search_query = scholarly.search_author(author_name)
 # Retrieve the first result from the iterator
 first_author_result = next(search_query)
 #scholarly.pprint(first_author_result)
@@ -14,25 +15,11 @@ first_author_result = next(search_query)
 author = scholarly.fill(first_author_result )
 #scholarly.pprint(author)
 
-# Take a closer look at the first publication
-first_publication = author['publications'][0]
 publications = author['publications']
-print(type(publications))
-#print(first_publication)
-print(len(publications))
-print(publications)
+publications_dict = {}
 for i in range(len(publications)):
     print("--------------------------Loop i ="+str(i)+"--------------------------")
     print(publications[i])
-    print(type(publications[i]))
-    write_json("publication_"+str(i)+".json",json.dumps(publications[i])) 
-# first_publication_filled = scholarly.fill(first_publication)
-# scholarly.pprint(first_publication_filled)
-
-# # Print the titles of the author's publications
-# publication_titles = [pub['bib']['title'] for pub in author['publications']]
-# print(publication_titles)
-
-# # Which papers cited that publication?
-# citations = [citation['bib']['title'] for citation in scholarly.citedby(first_publication_filled)]
-# print(citations)
+    publications_dict[i]=publications[i]
+filename = author_name.replace(" ", "-")
+write_json("publication-"+filename+".json",json.dumps(publications_dict))
