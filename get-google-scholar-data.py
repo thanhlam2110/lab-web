@@ -27,7 +27,7 @@ def send_to_kafka_topic(data):
 #------------------------------------------FUNCTION------------------------------------------
 # Retrieve the author's data, fill-in, and print
 # Get an iterator for the author results
-author_name = "Elena Ferrari"
+author_name = "Lam Tran Thanh Nguyen"
 search_query = scholarly.search_author(author_name)
 # Retrieve the first result from the iterator
 first_author_result = next(search_query)
