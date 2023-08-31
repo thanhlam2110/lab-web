@@ -5,7 +5,7 @@ def get_dblp_results(author_name):
     params = {
         "q": author_name,
         "format": "json",
-        "h": 100000
+        "h": 5000
     }
     response = requests.get(base_url, params=params)
     if response.status_code == 200:
