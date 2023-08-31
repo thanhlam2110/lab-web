@@ -1,5 +1,12 @@
 import requests
 # Funtion 1: Get All Information
+def edit_dict_keys(dictionary):
+    new_dict = {}
+    new_key = 0
+    for old_key in dictionary:
+        new_dict[new_key] = dictionary[old_key]
+        new_key += 1
+    return new_dict
 def get_dblp_results(author_name):
     base_url = "https://dblp.org/search/publ/api"
     params = {
@@ -91,6 +98,20 @@ def list_type_publication(author_name:str):
     for value in unique_values:
         type_publication.append(value)
     return type_publication
+def category_year_publication(author_name:str,category_name:str,year:str):
+    correct_author_publication = correct_author(author_name)
+    category_publication = {}
+    category_year_publication = {}
+    for i in range(len(correct_author_publication)):
+        types = correct_author_publication[i]["type"]
+        if(types==category_name):
+            category_publication[i] = correct_author_publication[i]
+    category_publication = edit_dict_keys(category_publication)
+    for j in range(len(category_publication)):
+        yearInfo = category_publication[j]["year"]
+        if(yearInfo==year):
+            category_year_publication[j] = category_publication[j]
+    return category_year_publication
 ####################
 author_name = "Elena Ferrari"
 # correct_author_publication = correct_author(author_name)
@@ -105,8 +126,12 @@ author_name = "Elena Ferrari"
 # print(len(year_collection))
 # print(year_collection)
 
-print(range_year_publication(author_name))
-print(len(range_year_publication(author_name)))
+# print(range_year_publication(author_name))
+# print(len(range_year_publication(author_name)))
 
 # print(list_type_publication(author_name))
 # print(len(list_type_publication(author_name)))
+
+category_year_publication= category_year_publication(author_name,"Conference and Workshop Papers","2023")
+print(len(category_year_publication))
+print(category_year_publication)
