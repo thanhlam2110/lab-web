@@ -26,6 +26,7 @@ def check_string_in_dict(dict_item, string_to_check):
 
 def correct_author(author_name:str):
     dblp_results = get_dblp_results(author_name)
+    #print(dblp_results)
     correct_author_publication = {}
     overall_infos =dblp_results["result"]["hits"]["hit"]
     index = 0
@@ -104,8 +105,8 @@ author_name = "Elena Ferrari"
 # print(len(year_collection))
 # print(year_collection)
 
-# print(range_year_publication(author_name))
-# print(len(range_year_publication(author_name)))
+print(range_year_publication(author_name))
+print(len(range_year_publication(author_name)))
 
-print(list_type_publication(author_name))
-print(len(list_type_publication(author_name)))
+# print(list_type_publication(author_name))
+# print(len(list_type_publication(author_name)))
